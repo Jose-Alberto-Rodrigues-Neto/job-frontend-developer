@@ -17,7 +17,7 @@ export function SearchBar({...props}: SearchBarProps) {
   }
 
   return (
-    <div className="relative w-[560px] items-center flex shadow-lg">
+    <div className="relative w-[560px] items-center flex shadow-lg my-3">
       <input 
         value={props.inputValue}
         placeholder={props.placeHolder}
