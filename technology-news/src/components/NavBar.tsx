@@ -1,4 +1,3 @@
-"use client"
 import Image from "next/image";
 import BackButton from "./BackButton";
 import React from "react";
@@ -9,12 +8,13 @@ interface NavBarProps {
   searchInputValue: string
   searchSetInputValue: React.Dispatch<React.SetStateAction<string>>
   searchHandleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+  searchHandleKeyDown: (event: React.KeyboardEvent<HTMLInputElement>) => void
 }
 
 export default function NavBar({...props}: NavBarProps) {
   return (
-    <header className="h-[460px] bg-slate-100 flex flex-col items-center">
-      <div className="flex w-full items-center h-20 px-6">
+    <header className="h-full bg-slate-100 flex flex-col items-center">
+      <div className={`flex w-full items-center h-20 p-6`}>
 
         <BackButton 
           title={"Home"} 
@@ -33,7 +33,7 @@ export default function NavBar({...props}: NavBarProps) {
         </div>
       </div>
       
-      <div className="flex flex-col gap-[12px] w-[920px] my-16">
+      <div className={`${props.backButtonIsVisible? "hidden" : "flex flex-col gap-[12px] w-[920px] mt-10"}`}>
         <h1 className="flex flex-col font-playfair text-center text-[64px] text-[#1E293B] leading-none">
           Explore as últimas notícias sobre tecnologia da web
         </h1>
@@ -48,6 +48,7 @@ export default function NavBar({...props}: NavBarProps) {
         inputValue={props.searchInputValue}
         setInputValue={props.searchSetInputValue}
         handleInputChange={props.searchHandleInputChange}
+        handleKeyDown={props.searchHandleKeyDown}
       />
     </header>
   )

@@ -7,6 +7,7 @@ interface SearchBarProps {
   inputValue: string
   setInputValue: React.Dispatch<React.SetStateAction<string>>
   handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+  handleKeyDown: (event: React.KeyboardEvent<HTMLInputElement>) => void
 }
 
 export function SearchBar({...props}: SearchBarProps) {
@@ -17,11 +18,12 @@ export function SearchBar({...props}: SearchBarProps) {
   }
 
   return (
-    <div className="relative w-[560px] items-center flex shadow-lg">
+    <div className="relative w-[560px] items-center flex shadow-lg my-3">
       <input 
         value={props.inputValue}
         placeholder={props.placeHolder}
         onChange={props.handleInputChange}
+        onKeyDown={props.handleKeyDown}
         onClick={() => setIsClicked(true)} 
         onBlur={() => setIsClicked(false)}
         className={`w-full p-5 ${isClicked ? "" : "px-16"} rounded-md text-black`}

@@ -20,6 +20,8 @@
 }
 @tailwind utilities;
 
+
+
 .custom-letter-spacing {
   letter-spacing: -0.05em;
 }

@@ -4,7 +4,7 @@ import { Either } from "fp-ts/lib/Either"
 
 export interface ArticleModal{
     source: {
-        id: string
+        id: string | null
         name: string
     }
     author: string
@@ -23,11 +23,11 @@ export interface ArticlesListModal{
 }
 
 class ArticleService{
-    async getArticles(query: string | null, page: number, options?: AxiosRequestConfig): Promise<Either<Error, ArticlesListModal>> {
+    async getArticles(query: string, page: number, options?: AxiosRequestConfig): Promise<Either<Error, ArticlesListModal>> {
         const path = 'everything';
         const params = {
-            q: query ?? "thec",
-            apiKey: "29eae89ffe6d4d589c9c8f24f7ebab73",
+            q: query,
+            apiKey: "8464637d202349059b258b1022751041", //vou ter que criar outra conta amanhã pra fazer mais testes
             sortBy: "publishedAt",
             pageSize: 20,
             page: page,
