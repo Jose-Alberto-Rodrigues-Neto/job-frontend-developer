@@ -23,11 +23,30 @@ export interface ArticlesListModal{
 }
 
 class ArticleService{
-    async getArticles(query: string, page: number, options?: AxiosRequestConfig): Promise<Either<Error, ArticlesListModal>> {
+    async getArticles(page: number, query: string, options?: AxiosRequestConfig): Promise<Either<Error, ArticlesListModal>> {
         const path = 'everything';
         const params = {
-            q: query,
-            apiKey: "8464637d202349059b258b1022751041", //vou ter que criar outra conta amanhã pra fazer mais testes
+            q: `tech${query !=="" ? `+${query}` : ''}`,
+            apiKey: "8464637d202349059b258b1022751041", 
+            sortBy: "publishedAt",
+            pageSize: 20,
+            page: page,
+            ...options?.params,
+        };
+
+        const config: AxiosRequestConfig = {
+            params,
+            ...options,
+        };
+
+        return newsApiProvider.get<ArticlesListModal>(path, config);
+    }
+
+    async getCategoryArticles(category: string, page:number, query: string, options?: AxiosRequestConfig): Promise<Either<Error, ArticlesListModal>> {
+        const path = "everything";
+        const params = {
+            q: `${category}${query !=="" ? `+${query}`: ''}`,
+            apiKey: "8464637d202349059b258b1022751041", 
             sortBy: "publishedAt",
             pageSize: 20,
             page: page,
