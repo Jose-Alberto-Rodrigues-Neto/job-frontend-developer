@@ -5,8 +5,7 @@ import NavBar from "@/components/NavBar";
 import Pagination from "@/components/Pagination";
 import { articleListService, ArticleModal, ArticlesListModal } from "@/services/ArticlesService";
 import React from "react";
-import Category from "./[category]/page";
-import CategoryCardList from "@/components/CategoryCardList";
+import CategoryCardList, { categoryCards } from "@/components/CategoryCardList";
 
 export default function Home() {
   const [input, setInput] = React.useState("")
@@ -16,29 +15,6 @@ export default function Home() {
   const [articles, setArticles] = React.useState<ArticlesListModal>()
   const [listOfArticles, setListOfArticles] = React.useState<ArticleModal[] | undefined>()
   const [isLoading, setIsLoading] = React.useState(true)
-
-  const categoryCards = [
-    {
-      title: "IA",
-      color: "#6366F1"
-    },
-    {
-      title: "Cybersecurity",
-      color: "#14B8A6"
-    },
-    {
-      title: "Blockchain",
-      color: "#F59E0B"
-    },
-    {
-      title: "Cloud",
-      color: "#38BDF8"
-    },
-    {
-      title: "StartUp",
-      color: "#A855F7"
-    }
-  ]
 
   const fetchListOfArticles = React.useCallback(async () => {
     setIsLoading(true)
@@ -110,7 +86,7 @@ export default function Home() {
         searchHandleKeyDown={handleKeyDown}
       />
       <CategoryCardList props={categoryCards}/>
-      <ArticleCardList props={listOfArticles} isLoading={isLoading} heading={heading}/>
+      <ArticleCardList props={listOfArticles} isLoading={isLoading} heading={heading} category={searchInput? searchInput: "tech"}/>
       <Pagination pages={100} selectedPage={page} onClick={handleOnClickPagination} nextNumber={nextPage} prevNumber={prevPage}/>
     </div>
   );
