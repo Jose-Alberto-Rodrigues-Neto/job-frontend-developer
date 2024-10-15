@@ -24,14 +24,13 @@ export default function Home() {
       setIsLoading(false) //criar block-page
       return console.log(response.left)
     }
-
     setArticles(response.right)
     setIsLoading(false)
   },[input, page])
 
   const handleArticles = React.useCallback(() =>{
     if(articles?.articles){
-      return setListOfArticles(articles.articles)
+      return setListOfArticles(articles.articles.filter((article) => article.title !== "[Removed]"))
     }
     return setListOfArticles(undefined)
   }, [articles])
