@@ -2,6 +2,7 @@
 
 import ArticleCardList from "@/components/ArticleCardList";
 import NavBar from "@/components/NavBar";
+import Pagination from "@/components/Pagination";
 import { articleListService, ArticleModal, ArticlesListModal } from "@/services/ArticlesService";
 import React from "react";
 
@@ -42,19 +43,33 @@ export default function Home() {
     }
   }
 
+  const handleOnClickPagination = (number: number) => {
+    setPage(number)
+  }
+
+  const nextPage = () => {
+    if(page < 5){
+      setPage((number) => number+1)
+    }
+  }
+
+  const prevPage = () =>{
+    if(page > 1){
+      setPage((number) => number-1)
+    }
+  }
+
   React.useEffect(() => {
     fetchListOfArticles()
   }, [fetchListOfArticles])
 
   React.useEffect(() => {
-    handleArticles();
+    handleArticles()
   }, [handleArticles])
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchInput(event.target.value); 
   }
-
-  
   
 
   return (
@@ -67,6 +82,7 @@ export default function Home() {
         searchHandleKeyDown={handleKeyDown}
       />
       <ArticleCardList props={listOfArticles} isLoading={isLoading} heading={heading}/>
+      <Pagination pages={100} selectedPage={page} onClick={handleOnClickPagination} nextNumber={nextPage} prevNumber={prevPage}/>
     </div>
   );
 }

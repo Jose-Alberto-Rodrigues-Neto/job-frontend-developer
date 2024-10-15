@@ -1,6 +1,14 @@
+"use client"
+
 import ArticleCard from "@/components/ArticleCard";
+import Pagination from "@/components/Pagination";
+import React from "react";
 
 export default function Article(){
+    const [page, setPage] = React.useState(1)
+    const handlePageChange = (number: number) =>{
+        setPage(number)
+    }
     const articleMock = {
         source: {
           id: null,
