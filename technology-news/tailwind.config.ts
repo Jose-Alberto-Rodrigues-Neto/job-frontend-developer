@@ -15,7 +15,8 @@ const config: Config = {
       fontFamily: {
         poppins: ['Poppins', 'sans-serif'],
         poppinsthin: ['PoppinsThin', 'sans-serif'],
-        playfair: ['Playfair', 'sas-serif']
+        playfair: ['Playfair', 'sas-serif'],
+        robotocondensed: ['"Roboto Condensed"', 'sans-serif'],
       },
     },
   },
