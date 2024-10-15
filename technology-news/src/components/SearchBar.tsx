@@ -7,6 +7,7 @@ interface SearchBarProps {
   inputValue: string
   setInputValue: React.Dispatch<React.SetStateAction<string>>
   handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+  handleKeyDown: (event: React.KeyboardEvent<HTMLInputElement>) => void
 }
 
 export function SearchBar({...props}: SearchBarProps) {
@@ -22,6 +23,7 @@ export function SearchBar({...props}: SearchBarProps) {
         value={props.inputValue}
         placeholder={props.placeHolder}
         onChange={props.handleInputChange}
+        onKeyDown={props.handleKeyDown}
         onClick={() => setIsClicked(true)} 
         onBlur={() => setIsClicked(false)}
         className={`w-full p-5 ${isClicked ? "" : "px-16"} rounded-md text-black`}

@@ -9,6 +9,7 @@ interface NavBarProps {
   searchInputValue: string
   searchSetInputValue: React.Dispatch<React.SetStateAction<string>>
   searchHandleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+  searchHandleKeyDown: (event: React.KeyboardEvent<HTMLInputElement>) => void
 }
 
 export default function NavBar({...props}: NavBarProps) {
@@ -48,6 +49,7 @@ export default function NavBar({...props}: NavBarProps) {
         inputValue={props.searchInputValue}
         setInputValue={props.searchSetInputValue}
         handleInputChange={props.searchHandleInputChange}
+        handleKeyDown={props.searchHandleKeyDown}
       />
     </header>
   )

@@ -22,14 +22,14 @@ export default function Home() {
 
     setArticles(response.right)
     setIsLoading(false)
-  },[searchInput, page])
+  },[page])
 
   const handleArticles = React.useCallback(() =>{
     if(articles?.articles){
       return setListOfArticles(articles.articles)
     }
     return setListOfArticles(undefined)
-  }, [searchInput, articles])
+  }, [articles])
 
   React.useEffect(() => {
     fetchListOfArticles()
@@ -37,10 +37,16 @@ export default function Home() {
 
   React.useEffect(() => {
     handleArticles();
-  }, [articles])
+  }, [handleArticles])
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchInput(event.target.value);
+    setSearchInput(event.target.value); 
+  }
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if(event.key === "Enter"){
+      fetchListOfArticles()
+    }
   }
   
 
@@ -51,6 +57,7 @@ export default function Home() {
         searchInputValue={searchInput}
         searchSetInputValue={setSearchInput}
         searchHandleInputChange={handleInputChange}
+        searchHandleKeyDown={handleKeyDown}
       />
       <ArticleCardList props={listOfArticles} isLoading={isLoading}/>
     </div>
