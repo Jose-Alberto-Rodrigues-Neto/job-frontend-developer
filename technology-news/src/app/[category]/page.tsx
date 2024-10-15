@@ -81,13 +81,13 @@ export default function Category({params:{category}}: CategoryProps){
             bgColor={category}
             title={`Explore as últimas notícias sobre ${category.toUpperCase()} da web`}
             subtitle={`Selecionamos todas as notícias sobre ${category.toUpperCase()} produzidas na web para você. Aproveite, foi tudo feito com dedicação.`}
-            backButtonIsVisible={false} 
+            backButtonIsVisible={true} 
             searchInputValue={searchInput}
             searchSetInputValue={setSearchInput}
             searchHandleInputChange={handleInputChange}
             searchHandleKeyDown={handleKeyDown}
         />
-        <ArticleCardList props={listOfArticles} isLoading={isLoading} heading={heading}/>
+        <ArticleCardList props={listOfArticles} isLoading={isLoading} heading={heading} category={category}/>
         <Pagination pages={100} selectedPage={page} onClick={handleOnClickPagination} nextNumber={nextPage} prevNumber={prevPage}/>
       </div>
     )
