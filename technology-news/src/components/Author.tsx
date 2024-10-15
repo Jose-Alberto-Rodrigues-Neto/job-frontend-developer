@@ -1,3 +1,4 @@
+import { format, parseISO } from 'date-fns';
 import Image from "next/image"
 
 interface AuthorProps{
@@ -6,6 +7,8 @@ interface AuthorProps{
     className?: string
 }
 export default function Author({authorName, publishedAt, className}:AuthorProps){
+    const date = parseISO(publishedAt)
+    const formattedDate = format(date, "MMMM dd',' yyyy")
     return(
         <div className="flex flex-row gap-2 text-slate-600 items-center py-2">
             <Image 
@@ -16,7 +19,7 @@ export default function Author({authorName, publishedAt, className}:AuthorProps)
                 className={`${className}`}
             />
             <h1 className="font-poppins text-base">{authorName}</h1>
-            <h2 className="font-poppinsthin text-base">{publishedAt}</h2>
+            <h2 className="font-poppinsthin text-base">{formattedDate}</h2>
             
         </div>
     )
