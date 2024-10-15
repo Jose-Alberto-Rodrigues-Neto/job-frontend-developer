@@ -1,4 +1,5 @@
 import ArticleCard from "@/components/ArticleCard";
+import React from "react";
 
 export default function Article(){
     const articleMock = {
