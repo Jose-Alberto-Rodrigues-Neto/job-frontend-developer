@@ -17,8 +17,11 @@ class NewsAPI {
         try {
             const res = await this.instance.get<T>(path, options);
             return right(res.data);
-        } catch (error: any) {
-            return left(new Error(error.message || "Erro desconhecido"));
+        } catch (error: unknown) {
+            if(error instanceof Error){
+                return left(new Error(error.message || "Erro desconhecido"));
+            }
+            return left(new Error("Erro desconhecido"));
         }
     }
 }

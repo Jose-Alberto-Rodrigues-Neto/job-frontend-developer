@@ -6,23 +6,22 @@ import React from "react";
 
 export default function Home() {
   const [searchInput, setSearchInput] = React.useState("")
-  const [search, setSearch] = React.useState("a")
   const [page, setPage] = React.useState(1)
   const [articles, setArticles] = React.useState<ArticlesListModal>()
 
-  const fetchListOfArticles = async () => {
-    const response = await articleListService.getArticles(search, page)
+  const fetchListOfArticles = React.useCallback(async () => {
+    const response = await articleListService.getArticles(searchInput, page)
 
     if (response._tag === "Left") {
       return console.log(response.left)
     }
 
     setArticles(response.right)
-  }
+  },[searchInput, page])
 
   React.useEffect(() => {
     fetchListOfArticles()
-  }, [search, page])
+  }, [fetchListOfArticles])
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchInput(event.target.value);
