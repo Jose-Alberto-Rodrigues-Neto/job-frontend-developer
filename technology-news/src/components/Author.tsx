@@ -18,7 +18,7 @@ export default function Author({authorName, publishedAt, className}:AuthorProps)
                 width={40}
                 className={`${className}`}
             />
-            <h1 className="font-poppins text-base">{authorName}</h1>
+            <h1 className="font-poppins text-base truncate max-w-72">{authorName || "Author"}</h1>
             <h2 className="font-poppinsthin text-base">{formattedDate}</h2>
             
         </div>
