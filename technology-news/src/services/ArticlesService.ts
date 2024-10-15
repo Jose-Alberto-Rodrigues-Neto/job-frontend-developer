@@ -26,7 +26,7 @@ class ArticleService{
     async getArticles(page: number, query: string, options?: AxiosRequestConfig): Promise<Either<Error, ArticlesListModal>> {
         const path = 'everything';
         const params = {
-            q: `tech${query !=="" ? `+${query}` : ''}`,
+            q: `technology${query !=="" ? `+${query}` : ''}`,
             apiKey: "8464637d202349059b258b1022751041", 
             sortBy: "publishedAt",
             pageSize: 20,
