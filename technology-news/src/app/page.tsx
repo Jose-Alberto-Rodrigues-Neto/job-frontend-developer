@@ -6,7 +6,9 @@ import { articleListService, ArticleModal, ArticlesListModal } from "@/services/
 import React from "react";
 
 export default function Home() {
+  const [input, setInput] = React.useState("")
   const [searchInput, setSearchInput] = React.useState("tech")
+  const [heading, setHeading] = React.useState("ÚLTIMAS NOTÍCIAS")
   const [page, setPage] = React.useState(1)
   const [articles, setArticles] = React.useState<ArticlesListModal>()
   const [listOfArticles, setListOfArticles] = React.useState<ArticleModal[] | undefined>()
@@ -22,7 +24,7 @@ export default function Home() {
 
     setArticles(response.right)
     setIsLoading(false)
-  },[page])
+  },[input, page])
 
   const handleArticles = React.useCallback(() =>{
     if(articles?.articles){
@@ -30,6 +32,15 @@ export default function Home() {
     }
     return setListOfArticles(undefined)
   }, [articles])
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if(event.key === "Enter"){
+      setHeading("O RESULTADO DA SUA BUSCA")
+      setIsLoading(true)
+      setInput(searchInput)
+      fetchListOfArticles()
+    }
+  }
 
   React.useEffect(() => {
     fetchListOfArticles()
@@ -43,11 +54,7 @@ export default function Home() {
     setSearchInput(event.target.value); 
   }
 
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if(event.key === "Enter"){
-      fetchListOfArticles()
-    }
-  }
+  
   
 
   return (
@@ -59,7 +66,7 @@ export default function Home() {
         searchHandleInputChange={handleInputChange}
         searchHandleKeyDown={handleKeyDown}
       />
-      <ArticleCardList props={listOfArticles} isLoading={isLoading}/>
+      <ArticleCardList props={listOfArticles} isLoading={isLoading} heading={heading}/>
     </div>
   );
 }

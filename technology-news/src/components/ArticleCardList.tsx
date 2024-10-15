@@ -5,8 +5,9 @@ import ArticleCard from "./ArticleCard";
 interface ArticleCardListProps{
     props: ArticleModal[] | undefined
     isLoading: boolean
+    heading: string
 }
-export default function ArticleCardList({props, isLoading}:ArticleCardListProps){
+export default function ArticleCardList({props, isLoading, heading}:ArticleCardListProps){
     if(isLoading){
         return(
             <div className="flex flex-col items-center gap-10">
@@ -36,7 +37,10 @@ export default function ArticleCardList({props, isLoading}:ArticleCardListProps)
         )
     }
     return(
-        <div className="flex flex-col items-center gap-10">
+        <div className="flex flex-col items-center gap-8">
+            <p className="flex self-start px-32 text-start gap-2 -mb-4">
+                <h1 className="font-poppins text-slate-800 text-xl">{heading}</h1>
+            </p>
             {props.map((card, key) =>(
                 <ArticleCard 
                     key={key}
