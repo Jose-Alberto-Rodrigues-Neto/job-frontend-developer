@@ -48,13 +48,13 @@ export default function HeadingId({params:{ category, headingid }}: HeadingIdPro
 
     const handleOnSave = () =>{
         if(article) {
-            const arr = localStorage.getItem("savedItems")
+            const arr = localStorage.getItem("articles_read")
             if(arr){
                 const newArr = JSON.parse(arr)
                 newArr.push(article[0])  
-                return localStorage.setItem("savedItems", JSON.stringify(newArr))  
+                return localStorage.setItem("articles_read", JSON.stringify(newArr))  
             }
-            return localStorage.setItem("savedItems", JSON.stringify(article))
+            return localStorage.setItem("articles_read", JSON.stringify(article))
         }
     }
 

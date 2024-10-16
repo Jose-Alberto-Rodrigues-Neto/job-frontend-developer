@@ -15,7 +15,7 @@ export default function MyArticles() {
 
     const handleLocalStorage = React.useCallback(() => {
         setIsLoading(true);
-        const data = localStorage.getItem("savedItems");
+        const data = localStorage.getItem("articles_read");
         setLocalStorageItem(data);
     }, [localStorage]);
 
