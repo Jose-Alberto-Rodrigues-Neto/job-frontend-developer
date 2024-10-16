@@ -22,12 +22,14 @@ export interface ArticlesListModal{
     articles: ArticleModal[]
 }
 
+const apiKey = "29eae89ffe6d4d589c9c8f24f7ebab73"
+
 class ArticleService{
     async getArticles(page: number, query: string, options?: AxiosRequestConfig): Promise<Either<Error, ArticlesListModal>> {
         const path = 'everything';
         const params = {
             q: `technology${query !=="" ? `+${query}` : ''}`,
-            apiKey: "8464637d202349059b258b1022751041", 
+            apiKey: apiKey, 
             sortBy: "publishedAt",
             pageSize: 20,
             page: page,
@@ -42,11 +44,47 @@ class ArticleService{
         return newsApiProvider.get<ArticlesListModal>(path, config);
     }
 
-    async getCategoryArticles(category: string, page:number, query: string, options?: AxiosRequestConfig): Promise<Either<Error, ArticlesListModal>> {
+    async getArticle(page: number, query: string, options?: AxiosRequestConfig): Promise<Either<Error, ArticlesListModal>> {
+        const path = 'everything';
+        let params = { }
+        if(query === "tech"){
+            params = {
+                q: `technology`,
+                apiKey: apiKey, 
+                sortBy: "publishedAt",
+                pageSize: 20,
+                page: page,
+                ...options?.params,
+            };
+            const config: AxiosRequestConfig = {
+                params,
+                ...options,
+            };
+
+            return newsApiProvider.get<ArticlesListModal>(path, config);
+        }
+        params = {
+            q: `${query !=="" ? `+${query}` : ''}`,
+            apiKey: apiKey, 
+            sortBy: "publishedAt",
+            pageSize: 20,
+            page: page,
+            ...options?.params,
+        };
+
+        const config: AxiosRequestConfig = {
+            params,
+            ...options,
+        };
+
+        return newsApiProvider.get<ArticlesListModal>(path, config);
+    }
+
+    async getCategoryArticles(category: string, page:number, query?: string, options?: AxiosRequestConfig): Promise<Either<Error, ArticlesListModal>> {
         const path = "everything";
         const params = {
             q: `${category}${query !=="" ? `+${query}`: ''}`,
-            apiKey: "8464637d202349059b258b1022751041", 
+            apiKey: apiKey, 
             sortBy: "publishedAt",
             pageSize: 20,
             page: page,
