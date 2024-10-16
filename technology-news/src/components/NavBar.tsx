@@ -2,6 +2,7 @@ import Image from "next/image";
 import BackButton from "./BackButton";
 import React from "react";
 import { SearchBar } from "./SearchBar";
+import SaveButton from "./SaveButton";
 
 interface NavBarProps {
   backButtonIsVisible: boolean
@@ -12,6 +13,7 @@ interface NavBarProps {
   searchSetInputValue: React.Dispatch<React.SetStateAction<string>>
   searchHandleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void
   searchHandleKeyDown: (event: React.KeyboardEvent<HTMLInputElement>) => void
+  onSave?: () => void
 }
 
 export default function NavBar({...props}: NavBarProps) {
@@ -40,18 +42,19 @@ export default function NavBar({...props}: NavBarProps) {
         <BackButton 
           title={"Home"} 
           href={"/"} 
-          icon={<Image src={"./arrow-left-line.svg"} alt={"go-back-icon"} width={24} height={24} />} 
+          icon={<Image src={"/arrow-left-line.svg"} alt={"go-back-icon"} width={24} height={24} />} 
           isVisible={props.backButtonIsVisible}
         />
 
         <div className="flex w-full justify-center">
           <Image 
-            src={"./Logo.svg"} 
+            src={"/Logo.svg"} 
             alt={"Logo"}
             width={306.08}
             height={38.84}
           />
         </div>
+        {props.onSave && <SaveButton onClick={props.onSave} /> }
       </div>
       
       <div className={`"flex flex-col gap-[12px] w-[920px] mt-10"`}>
