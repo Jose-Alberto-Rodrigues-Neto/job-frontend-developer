@@ -1,5 +1,73 @@
 # Sistema Verdes Mares: Frontend Coding Test
 
+## Desenvolvedor José Alberto
+
+## Como rodar o projeto
+
+```bash
+    #inicialmente utilize um git clone no repositório
+    git clone https://github.com/Jose-Alberto-Rodrigues-Neto/job-frontend-developer.git
+
+    #logo após entre no folder onde a aplicaçãoe web se encontra
+    cd technology-news
+
+    #após verificar que você se encontra no folder correto, no caso 'technology-news', será necessário instalar as dependências do projeto
+    npm install
+
+    #logo após, crie um arquivo .env dentro do folder 'technology'-news e siga o exemplo do .env.example
+
+    #por fim, após verificar que todos os passos estão corretos rode o projeto
+    npm run dev
+
+```
+
+## Escolha das stacks
+
+- `Next.js` e `React.js` (possu bastante experência com Next.js, utilizei vizando aumentar minha produtividade e qualidade do desenvolvimeto, pois facilita em muitas coisas (ex: Rotas Dinâmicas, Navegação entre páginas, etc.))
+
+- `TailwindCss` (a escolha do TailwindCss foi meramente para aumentar minha velocidade de desenvolvimento, acredito que não precisar sair do componente enquanto estou desenvolvendo ele agiliza em muito a velocidade do código, além de utilizar simplificações do prórpio CSS)
+
+- `TypeScript` (modals e componentes bem tipados facilitam muito no momento de reutilizar eles, seja para fazer uma requisição ao backend, quanto para criar listas de componentes de forma dinâmica e com uma margem de erro menor, por isso normalmente escolho utilizar TypeScript como linguagem principal de desenvolvimento)
+
+- `Axios` (utilizei axios para lidar com as requisições pois tenho mais experiência com essa estratégia)
+
+
+## Checklist de Requisitos
+
+### Requisitos Funcinais
+- [x] Deve ser possível listar as notícias mais recentes em ordem cronológica;
+- [x] Deve ser possível listar as notícias com `thumbnail`, `heading`, `description`, `author`, `image`, `category` e `source`;
+- [x] Deve ser possível acessar a notícia pelo `slug`;
+- [x] Deve ser possível o usuário buscar notícias desejada pelo `heading`;
+- [ ] Deve ser possível o usuário buscar notícia por `author`;
+- [x] Deve ser possível o usuário ler uma notícia;
+- [x] Deve ser possível salvar um `id` da notíca lida;
+      
+### Regras de negócio
+- [ ] O usuário não pode ler mais que 2 vezes a mesma notícia;
+- [ ] O usuário não pode ler uma notícia com o JavaScript desabilitado;
+- [ ] O usuário não pode ler uma notícia em modo anônimo;
+- [x] O usuário não poderá acessar uma página de categoria (***`observação`***: como criei um página de categoria, decidi criar uma forma do usuário conseguir ver as páginas de categoria ao criar um contexto que torna o usuário em um usuário premium);
+- [x] O usuário não poderá acessar uma página de author;
+- [x] O usuário deverá ser redirecionado para página principal quando tentar acessar a página de categoria;
+      
+### Requisitos não-funcionais
+- [x] Dynamic Routes: o `slug` da notícida deve ser: `/[category]/[heading]-[id]`
+- [x] O `id` da notícia lida precisam estar persistidos em `localStorage`;
+- [x] O `id` da notícia persistida em `localStorage`, deve ser retornado quando passado o nome da chave `articles_read`;
+- [x] A lista de notícias deve estar paginadas com 20 itens por página; (***`observação`***: utilizei uma paginação fixa de 5 pois o máximo de objetos que a api deixava requisitar era até o número 100 e como na páginação temos 20 artigos por página, o máximo que a api poderia me retornar sempre seria 5, pois após o 5 ela não deixava eu fazer a requisição utilizando a páginação própria da api)
+- [x] A lista de notícias deve exibir as últimas notícias em ordem cronológica;
+- [ ] O usuário com JavaScript desabilitado no Browser deverá ser direcionado para page-block;
+- [ ] O usuário em aba anônimo no Browser deverá ser direcionado para page-block;
+- [ ] O usuário com mais de 10 leituras diferentes deverá ser direcionado para page-block;
+
+### Observações
+
+Levando em conta que alguns requisitos não estavam no mockup, como a página de categorias e página de favoritos, tomei a liberdade para desenvolver elas de uma forma que eu achasse satisfatória, além de encontrar formas práticas de acessar esses novos caminhos e que não quebrassem a experiência do usuário
+
+---
+## Desafio
+
 ![Desktop](desktop.jpg)
 
 ## Apresentação
@@ -42,28 +110,28 @@ Estamos ansiosos para ver sua solução e esperamos que você aproveite este des
 
 ## Requisitos
 ### Requisitos Funcinais
-- [ ] Deve ser possível listar as notícias mais recentes em ordem cronológica;
-- [ ] Deve ser possível listar as notícias com `thumbnail`, `heading`, `description`, `author`, `image`, `category` e `source`;
-- [ ] Deve ser possível acessar a notícia pelo `slug`;
-- [ ] Deve ser possível o usuário buscar notícias desejada pelo `heading`;
+- [x] Deve ser possível listar as notícias mais recentes em ordem cronológica;
+- [x] Deve ser possível listar as notícias com `thumbnail`, `heading`, `description`, `author`, `image`, `category` e `source`;
+- [x] Deve ser possível acessar a notícia pelo `slug`;
+- [x] Deve ser possível o usuário buscar notícias desejada pelo `heading`;
 - [ ] Deve ser possível o usuário buscar notícia por `author`;
-- [ ] Deve ser possível o usuário ler uma notícia;
-- [ ] Deve ser possível salvar um `id` da notíca lida;
+- [x] Deve ser possível o usuário ler uma notícia;
+- [x] Deve ser possível salvar um `id` da notíca lida;
       
 ### Regras de negócio
 - [ ] O usuário não pode ler mais que 2 vezes a mesma notícia;
 - [ ] O usuário não pode ler uma notícia com o JavaScript desabilitado;
 - [ ] O usuário não pode ler uma notícia em modo anônimo;
-- [ ] O usuário não poderá acessar uma página de categoria;
-- [ ] O usuário não poderá acessar uma página de author;
-- [ ] O usuário deverá ser redirecionado para página principal quando tentar acessar a página de categoria;
+- [x] O usuário não poderá acessar uma página de categoria;
+- [x] O usuário não poderá acessar uma página de author;
+- [x] O usuário deverá ser redirecionado para página principal quando tentar acessar a página de categoria;
       
 ### Requisitos não-funcionais
-- [ ] Dynamic Routes: o `slug` da notícida deve ser: `/[category]/[heading]-[id]`
-- [ ] O `id` da notícia lida precisam estar persistidos em `localStorage`;
-- [ ] O `id` da notícia persistida em `localStorage`, deve ser retornado quando passado o nome da chave `articles_read`;
-- [ ] A lista de notícias deve estar paginadas com 20 itens por página;
-- [ ] A lista de notícias deve exibir as últimas notícias em ordem cronológica;
+- [x] Dynamic Routes: o `slug` da notícida deve ser: `/[category]/[heading]-[id]`
+- [x] O `id` da notícia lida precisam estar persistidos em `localStorage`;
+- [x] O `id` da notícia persistida em `localStorage`, deve ser retornado quando passado o nome da chave `articles_read`;
+- [x] A lista de notícias deve estar paginadas com 20 itens por página;
+- [x] A lista de notícias deve exibir as últimas notícias em ordem cronológica;
 - [ ] O usuário com JavaScript desabilitado no Browser deverá ser direcionado para page-block;
 - [ ] O usuário em aba anônimo no Browser deverá ser direcionado para page-block;
 - [ ] O usuário com mais de 10 leituras diferentes deverá ser direcionado para page-block;
