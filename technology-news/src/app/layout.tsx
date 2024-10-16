@@ -1,10 +1,6 @@
-import type { Metadata } from "next";
+"use client"
 import "./globals.css";
-
-export const metadata: Metadata = {
-  title: "Technology/news",
-  description: "Todas as notícias de tecnologia do mundo!",
-};
+import { PremiumProvider } from "@/components/PremiumContext";
 
 export default function RootLayout({
   children,
@@ -16,7 +12,9 @@ export default function RootLayout({
       <body
         className={`bg-[#FFFFFF] flex flex-col`}
       >
-        {children}
+        <PremiumProvider>
+          {children}
+        </PremiumProvider>
       </body>
     </html>
   );
