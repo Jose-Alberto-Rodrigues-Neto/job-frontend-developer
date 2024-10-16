@@ -22,7 +22,7 @@ export interface ArticlesListModal{
     articles: ArticleModal[]
 }
 
-const apiKey = "29eae89ffe6d4d589c9c8f24f7ebab73"
+const apiKey = process.env.NEXT_PUBLIC_API_KEY
 
 class ArticleService{
     async getArticles(page: number, query: string, options?: AxiosRequestConfig): Promise<Either<Error, ArticlesListModal>> {
