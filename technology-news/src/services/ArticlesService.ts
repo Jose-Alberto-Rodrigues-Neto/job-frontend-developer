@@ -2,7 +2,7 @@ import newsApiProvider from "@/provider/newsApiProvider"
 import { AxiosRequestConfig } from "axios"
 import { Either } from "fp-ts/lib/Either"
 
-export interface ArticleModal{
+export interface ArticleModal {
     source: {
         id: string | null
         name: string
@@ -32,6 +32,7 @@ class ArticleService{
             apiKey: apiKey, 
             sortBy: "publishedAt",
             pageSize: 20,
+            searchIn: "title",
             page: page,
             ...options?.params,
         };
@@ -54,6 +55,7 @@ class ArticleService{
                 sortBy: "publishedAt",
                 pageSize: 20,
                 page: page,
+                searchIn: "title",
                 ...options?.params,
             };
             const config: AxiosRequestConfig = {
@@ -69,6 +71,7 @@ class ArticleService{
             sortBy: "publishedAt",
             pageSize: 20,
             page: page,
+            searchIn: "title",
             ...options?.params,
         };
 
@@ -88,6 +91,7 @@ class ArticleService{
             sortBy: "publishedAt",
             pageSize: 20,
             page: page,
+            searchIn: "title",
             ...options?.params,
         };
 
