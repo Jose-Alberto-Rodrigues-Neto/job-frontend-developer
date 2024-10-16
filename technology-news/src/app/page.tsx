@@ -21,7 +21,7 @@ export default function Home() {
     const response = await articleListService.getArticles(page, searchInput)
 
     if (response._tag === "Left") {
-      setIsLoading(false) //criar block-page
+      setIsLoading(false)
       return console.log(response.left)
     }
     setArticles(response.right)
