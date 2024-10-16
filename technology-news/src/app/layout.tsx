@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { PremiumProvider } from "@/components/PremiumContext";
+import { PremiumProvider } from "@/contexts/PremiumContext";
 
 export const metadata: Metadata = {
   title: "Technology/News",

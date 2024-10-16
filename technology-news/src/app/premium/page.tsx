@@ -1,6 +1,6 @@
 "use client"
 import Popup from "@/components/PopUp";
-import { PremiumProvider, usePremium } from "@/components/PremiumContext";
+import { usePremium } from "@/contexts/PremiumContext";
 import { useRouter } from "next/navigation";
 
 export default function Premium(){
