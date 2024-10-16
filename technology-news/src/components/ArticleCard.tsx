@@ -1,20 +1,24 @@
 import { ArticleModal } from "@/services/ArticlesService";
 import Image from "next/image";
 import Author from "./Author";
+import Link from "next/link";
 
 interface ArticleCardProps{
     props: ArticleModal
+    category: string
+    page: number
 }
 
-export default function ArticleCard({props}:ArticleCardProps){
+export default function ArticleCard({props, category, page}:ArticleCardProps){
     let defaultImage = "/article-image.png"
 
+    
     if(props.urlToImage && props.urlToImage !== ""){
         defaultImage = props.urlToImage
     }
 
     return(
-        <section className="w-4/5 h-auto rounded-md flex flex-row hover:bg-zinc-100 cursor-pointer gap-3">
+        <Link href={`/${category}/${props.title}${page}`} className="w-4/5 h-auto rounded-md flex flex-row hover:bg-zinc-100 cursor-pointer gap-3">
             <Image 
                 src={defaultImage} 
                 alt={defaultImage}
@@ -28,6 +32,6 @@ export default function ArticleCard({props}:ArticleCardProps){
                 <p className="text-xl text-slate-600">{props.description}</p>
                 <Author authorName={props.author} publishedAt={props.publishedAt} className="h-8 w-auto" />
             </div>
-        </section>
+        </Link>
     )
 }

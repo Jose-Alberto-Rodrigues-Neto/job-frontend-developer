@@ -30,7 +30,7 @@ export function SearchBar({...props}: SearchBarProps) {
       />
 
       <Image 
-        src={"./search-line.svg"} 
+        src={"/search-line.svg"} 
         alt={"Lupa"} 
         height={24}
         width={24}
@@ -38,7 +38,7 @@ export function SearchBar({...props}: SearchBarProps) {
       />
 
       <Image
-        src={"./close-circle.svg"} 
+        src={"/close-circle.svg"} 
         alt={"Limpar"} 
         height={24}
         width={24}

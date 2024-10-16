@@ -6,8 +6,10 @@ interface ArticleCardListProps{
     props: ArticleModal[] | undefined
     isLoading: boolean
     heading: string
+    category: string
+    page: number
 }
-export default function ArticleCardList({props, isLoading, heading}:ArticleCardListProps){
+export default function ArticleCardList({props, isLoading, heading, category, page}:ArticleCardListProps){
     if(isLoading){
         return(
             <div className="flex flex-col items-center gap-10">
@@ -45,6 +47,8 @@ export default function ArticleCardList({props, isLoading, heading}:ArticleCardL
                 <ArticleCard 
                     key={key}
                     props={card}
+                    category={category}
+                    page={page}
                 />
             ))}
         </div>
@@ -54,17 +58,17 @@ export default function ArticleCardList({props, isLoading, heading}:ArticleCardL
 const ArticleCardSkeleton = () =>{
     return(
             <div className="w-4/5 h-72 rounded-md flex flex-row hover:bg-zinc-100 cursor-pointer gap-3">
-                <div className="w-1/2 h-full object-fit rounded-md bg-slate-100"/>
-                <div className="flex flex-col w-full p-2 gap-2">
-                    <h2 className="h-2 w-2/4 bg-slate-100"></h2>
-                    <h1 className="h-6 w-3/4 bg-slate-100"></h1>
+                <div className="w-1/2 h-full object-fit rounded-md bg-slate-100 animate-pulse"/>
+                <div className="flex flex-col w-full p-2 gap-4 animate-pulse">
+                    <h2 className="h-2 w-2/4 bg-slate-100 animate-pulse"></h2>
+                    <h1 className="h-6 w-3/4 bg-slate-100 animate-pulse"></h1>
+                    <p className="h-4 w-3/4 bg-slate-100 animate-pulse"></p>
+                    <p className="h-4 w-3/4 bg-slate-100 animate-pulse"></p>
                     <p className="h-4 w-3/4 bg-slate-100"></p>
-                    <p className="h-4 w-3/4 bg-slate-100"></p>
-                    <p className="h-4 w-3/4 bg-slate-100"></p>
-                    <div className="flex flex-row gap-2">
-                        <div className="rounded-full w-10 1/3"></div>
-                        <p className="h-3 w-1/3"></p>
-                        <p className="h-2 w-1/3"></p>
+                    <div className="flex flex-row gap-3 py-2">
+                        <div className="rounded-full w-10 1/3 animate-pulse"></div>
+                        <p className="h-3 w-1/3 animate-pulse"></p>
+                        <p className="h-2 w-1/3 animate-pulse"></p>
                     </div>
                 </div>
             </div>

@@ -2,12 +2,16 @@
 const nextConfig = {
     images: {
         remotePatterns: [
-            {
-              protocol: "https",
-              hostname: "**",
-            },
-          ],
-        domains: ['community.wolfram.com'],
+          {
+            protocol: "https",
+            hostname: "*",
+          },
+          {
+            protocol: "http",
+            hostname: "*",
+          },
+        ],
+        domains: ['community.wolfram.com', 'www.sspnet.org'],
       }
 };
 
