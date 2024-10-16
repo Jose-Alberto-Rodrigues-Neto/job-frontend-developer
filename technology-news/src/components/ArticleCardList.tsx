@@ -7,8 +7,9 @@ interface ArticleCardListProps{
     isLoading: boolean
     heading: string
     category: string
+    page: number
 }
-export default function ArticleCardList({props, isLoading, heading, category}:ArticleCardListProps){
+export default function ArticleCardList({props, isLoading, heading, category, page}:ArticleCardListProps){
     if(isLoading){
         return(
             <div className="flex flex-col items-center gap-10">
@@ -47,6 +48,7 @@ export default function ArticleCardList({props, isLoading, heading, category}:Ar
                     key={key}
                     props={card}
                     category={category}
+                    page={page}
                 />
             ))}
         </div>

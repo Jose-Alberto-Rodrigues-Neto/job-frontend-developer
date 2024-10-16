@@ -6,24 +6,19 @@ import Link from "next/link";
 interface ArticleCardProps{
     props: ArticleModal
     category: string
+    page: number
 }
 
-export default function ArticleCard({props, category}:ArticleCardProps){
+export default function ArticleCard({props, category, page}:ArticleCardProps){
     let defaultImage = "/article-image.png"
 
-    const handleArticleId = () => {
-        if(props.source.id === null){
-            return props.url
-        }
-        return props.source.id
-    }
-
+    
     if(props.urlToImage && props.urlToImage !== ""){
         defaultImage = props.urlToImage
     }
 
     return(
-        <Link href={`/${category}/${handleArticleId()}`} className="w-4/5 h-auto rounded-md flex flex-row hover:bg-zinc-100 cursor-pointer gap-3">
+        <Link href={`/${category}/${props.title}${page}`} className="w-4/5 h-auto rounded-md flex flex-row hover:bg-zinc-100 cursor-pointer gap-3">
             <Image 
                 src={defaultImage} 
                 alt={defaultImage}

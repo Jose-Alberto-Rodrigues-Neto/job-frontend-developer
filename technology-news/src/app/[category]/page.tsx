@@ -87,7 +87,7 @@ export default function Category({params:{category}}: CategoryProps){
             searchHandleInputChange={handleInputChange}
             searchHandleKeyDown={handleKeyDown}
         />
-        <ArticleCardList props={listOfArticles} isLoading={isLoading} heading={heading} category={category}/>
+        <ArticleCardList props={listOfArticles} isLoading={isLoading} heading={heading} category={category} page={page}/>
         <Pagination pages={100} selectedPage={page} onClick={handleOnClickPagination} nextNumber={nextPage} prevNumber={prevPage}/>
       </div>
     )
