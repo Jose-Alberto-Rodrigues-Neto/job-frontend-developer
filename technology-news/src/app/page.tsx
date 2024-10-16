@@ -85,7 +85,7 @@ export default function Home() {
         searchHandleKeyDown={handleKeyDown}
       />
       <CategoryCardList props={categoryCards}/>
-      <ArticleCardList props={listOfArticles} isLoading={isLoading} heading={heading} category={searchInput? searchInput: "tech"}/>
+      <ArticleCardList props={listOfArticles} isLoading={isLoading} heading={heading} category={searchInput? searchInput: "tech"} page={page}/>
       <Pagination pages={100} selectedPage={page} onClick={handleOnClickPagination} nextNumber={nextPage} prevNumber={prevPage}/>
     </div>
   );
