@@ -83,6 +83,7 @@ export default function Home() {
         searchSetInputValue={setSearchInput}
         searchHandleInputChange={handleInputChange}
         searchHandleKeyDown={handleKeyDown}
+        articleSavedIsVisible={true}
       />
       <CategoryCardList props={categoryCards}/>
       <ArticleCardList props={listOfArticles} isLoading={isLoading} heading={heading} category={searchInput? searchInput: "tech"} page={page}/>

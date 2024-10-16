@@ -87,6 +87,7 @@ export default function SearchId({params:{searchid}}: SearchIdProps){
             searchSetInputValue={setSearchInput}
             searchHandleInputChange={handleInputChange}
             searchHandleKeyDown={handleKeyDown}
+            articleSavedIsVisible={true}
         />
         <ArticleCardList props={listOfArticles} isLoading={isLoading} heading={heading} category={searchid} page={page}/>
         <Pagination pages={100} selectedPage={page} onClick={handleOnClickPagination} nextNumber={nextPage} prevNumber={prevPage}/>

@@ -3,9 +3,12 @@ import BackButton from "./BackButton";
 import React from "react";
 import { SearchBar } from "./SearchBar";
 import SaveButton from "./SaveButton";
+import { FaBookBookmark } from "react-icons/fa6";
+import { useRouter } from "next/navigation";
 
 interface NavBarProps {
   backButtonIsVisible: boolean
+  articleSavedIsVisible?: boolean
   searchInputValue: string
   bgColor?: string
   title?: string
@@ -17,6 +20,10 @@ interface NavBarProps {
 }
 
 export default function NavBar({...props}: NavBarProps) {
+  const router = useRouter()
+  const goToSavedArticles = () => {
+    return router.push("/my-articles")
+  }
 
   const handleBgColor = () => {
     switch (props.bgColor) {
@@ -55,6 +62,8 @@ export default function NavBar({...props}: NavBarProps) {
           />
         </div>
         {props.onSave && <SaveButton onClick={props.onSave} /> }
+
+        {props.articleSavedIsVisible && <FaBookBookmark onClick={goToSavedArticles} className="text-3xl text-black hover:animate-pulse cursor-pointer"/>}
       </div>
       
       <div className={`"flex flex-col gap-[12px] w-[920px] mt-10"`}>
