@@ -47,7 +47,15 @@ export default function HeadingId({params:{ category, headingid }}: HeadingIdPro
     }, [articleData, headingid])
 
     const handleOnSave = () =>{
-        console.log("onsave")
+        if(article) {
+            const arr = localStorage.getItem("savedItems")
+            if(arr){
+                const newArr = JSON.parse(arr)
+                newArr.push(article[0])  
+                return localStorage.setItem("savedItems", JSON.stringify(newArr))  
+            }
+            return localStorage.setItem("savedItems", JSON.stringify(article))
+        }
     }
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -110,7 +118,7 @@ export default function HeadingId({params:{ category, headingid }}: HeadingIdPro
                             <h1 className="w-[920px] text-slate-800 text-4xl text-center">{data.title}</h1>
                             <Author authorName={data.author} publishedAt={data.publishedAt}/>
                             <Image 
-                                src={data.urlToImage} 
+                                src={data.urlToImage? data.urlToImage : "/default-article-image.svg"} 
                                 alt={data.urlToImage}
                                 width={922}
                                 height={512}
