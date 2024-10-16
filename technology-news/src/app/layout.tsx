@@ -1,6 +1,11 @@
-"use client"
+import type { Metadata } from "next";
 import "./globals.css";
 import { PremiumProvider } from "@/components/PremiumContext";
+
+export const metadata: Metadata = {
+  title: "Technology/News",
+  description: "Todas as notícias de tecnologia que você pode encontrar em um só lugar!",
+};
 
 export default function RootLayout({
   children,
