@@ -2,7 +2,10 @@
 import ArticleCardList from "@/components/ArticleCardList"
 import NavBar from "@/components/NavBar"
 import Pagination from "@/components/Pagination"
+import PopUp from "@/components/PopUp"
+import { PremiumProvider, usePremium } from "@/components/PremiumContext"
 import { articleListService, ArticleModal, ArticlesListModal } from "@/services/ArticlesService"
+import { useRouter } from "next/navigation"
 import React from "react"
 
 interface CategoryProps {
@@ -10,6 +13,8 @@ interface CategoryProps {
 }
 
 export default function Category({params:{category}}: CategoryProps){
+    const router = useRouter()
+    const { isPremium } = usePremium()
     const [input, setInput] = React.useState("")
     const [searchInput, setSearchInput] = React.useState("")
     const [heading, setHeading] = React.useState(`ÚLTIMAS NOTÍCIAS DE ${category.toUpperCase()}`)
@@ -74,22 +79,38 @@ export default function Category({params:{category}}: CategoryProps){
       setSearchInput(event.target.value); 
     }
     
+    const handleClosePopUp = () =>{
+        router.push('/')
+    }
+
+    const handleGoPremium = () =>{
+      router.push('/premium')
+  }
   
     return (
-      <div className="flex flex-col gap-20">
-        <NavBar 
-            bgColor={category}
-            title={`Explore as últimas notícias sobre ${category.toUpperCase()} da web`}
-            subtitle={`Selecionamos todas as notícias sobre ${category.toUpperCase()} produzidas na web para você. Aproveite, foi tudo feito com dedicação.`}
-            backButtonIsVisible={true} 
-            searchInputValue={searchInput}
-            searchSetInputValue={setSearchInput}
-            searchHandleInputChange={handleInputChange}
-            searchHandleKeyDown={handleKeyDown}
-            articleSavedIsVisible={true}
-        />
-        <ArticleCardList props={listOfArticles} isLoading={isLoading} heading={heading} category={category} page={page}/>
-        <Pagination pages={100} selectedPage={page} onClick={handleOnClickPagination} nextNumber={nextPage} prevNumber={prevPage}/>
-      </div>
+        <div className="flex flex-col gap-20">
+            <NavBar 
+                bgColor={category}
+                title={`Explore as últimas notícias sobre ${category.toUpperCase()} da web`}
+                subtitle={`Selecionamos todas as notícias sobre ${category.toUpperCase()} produzidas na web para você. Aproveite, foi tudo feito com dedicação.`}
+                backButtonIsVisible={true} 
+                searchInputValue={searchInput}
+                searchSetInputValue={setSearchInput}
+                searchHandleInputChange={handleInputChange}
+                searchHandleKeyDown={handleKeyDown}
+                articleSavedIsVisible={true}
+            />
+            <PopUp 
+              title={"NÃO POSSUI ACESSO!"} 
+              content={"Infelizmente você não possui acesso para acessar as categorias. Para ter mais acesso dentro da plataforma, vire membro premium de nossos serviços!"} 
+              textBack={"Voltar"} 
+              textNext={"Vire Premium"}
+              onClose={handleClosePopUp} 
+              onClick={handleGoPremium}
+              isOpen={!isPremium}
+            />
+            <ArticleCardList props={listOfArticles} isLoading={isLoading} heading={heading} category={category} page={page}/>
+            <Pagination pages={100} selectedPage={page} onClick={handleOnClickPagination} nextNumber={nextPage} prevNumber={prevPage}/>
+        </div>    
     )
 }
